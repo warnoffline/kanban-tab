@@ -81,16 +81,23 @@
     .column{
       width: 100%;
       margin-top: 10px;
+      padding: 0;
+      height: 50vh;
+      overflow-y: auto;
     }
     .task_text{
-        font-size: 20px;
+        font-size: 15px;
     }
     .chakra-button.task_delete{
         width: 100%;
         font-size: 15px;
     }
     .chakra-heading.column_title{
-        font-size: 30px;
+        font-size: 20px;
+        text-align: center;
+    }
+    .chakra-card__body.column_body{
+        padding: 0;
     }
   }
   
