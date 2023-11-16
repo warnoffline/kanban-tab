@@ -8,7 +8,7 @@ import './App.css'
 
 const App = function () {
     console.log(window.TouchEvent)
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
     console.log(isTouchDevice)
     return (  
         <DndProvider backend={isTouchDevice? TouchBackend : HTML5Backend}>
