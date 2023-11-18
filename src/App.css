@@ -30,8 +30,10 @@
 }
 @media screen and (max-width: 499px) {
   .columns{
-    width: 80%;
+    width: 90%;
     flex-direction: column;
+    display: flex;
+    align-items: center;
   }
 }
 

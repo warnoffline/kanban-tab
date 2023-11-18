@@ -5,13 +5,14 @@ import { addTask } from '../store';
 import './index.css'
 import { useDisclosure, Button,  Modal, ModalOverlay, ModalContent , ModalHeader , ModalCloseButton, ModalBody, FormControl, FormLabel, Input,ModalFooter} from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
-
+import {useColorMode} from '@chakra-ui/color-mode'
+ 
 const Form = function () {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [taskText, setTaskText] = useState('');
     const dispatch = useDispatch();
     const tasks = useSelector(state => state.tasks)
-    
+    const { colorMode, toggleColorMode } = useColorMode()
     const handleAddTask = () => {
         if (taskText.trim() !== '') {
           const taskId = `${tasks.length + 1}`;
@@ -22,7 +23,12 @@ const Form = function () {
     };
     return (  
         <>
-         <Button colorScheme="blue" onClick={onOpen}>Add Task</Button>
+        <div className='buttons_head'>
+        <Button onClick={toggleColorMode}>
+        Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+        </Button>
+         <Button className="modal_button" colorScheme="blue" onClick={onOpen}>Add Task</Button>
+        </div>
          <Modal
            isOpen={isOpen}
            onClose={onClose}

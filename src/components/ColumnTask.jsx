@@ -16,9 +16,11 @@ const ColumnTask = function ({title}) {
           <Droppable droppableId={title} >
             {(provided, snapshot) => (
               <CardBody className='column_body' ref={provided.innerRef} {...provided.droppableProps}>
-                {tasks.filter(task => task.column === title).map((task, index) => (
-                  <Task task={task} index={index}/>
-                ))}
+                {tasks.map((task, index) => {
+                  if(task.column == title){
+                    return <Task task={task} index={index}/>
+                  }
+                  })}
                 {provided.placeholder}
               </CardBody>
             )}
