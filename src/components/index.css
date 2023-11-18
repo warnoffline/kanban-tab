@@ -15,6 +15,10 @@
     transition: 0.3s;
     margin: 10px 0;
     cursor: pointer;
+    width: 100%;
+}
+.column_body{
+    width: 50%;
 }
 .chakra-card.done{
     background-color: rgba(56, 161, 105, 1);
@@ -41,11 +45,11 @@
     flex-direction: column;
     align-items: center;
 }
-.task_text{
+.task_text {
     width: 100%;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     margin-bottom: 10px;
-    text-align: center;
+
 }
 .task_delete{
     width: 50%;
@@ -66,6 +70,10 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+.task_text_around{
+    width: 100%;
+    overflow-wrap: break-word;
 }
 
 @media screen and (max-width: 1400px) and (min-width: 850px) {
@@ -101,14 +109,14 @@
       padding: 0 40px;
     }
     .task_text{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+
         height: 100%;
-        width: 45%;
+        width: 100%;
         font-size: 15px;
         word-wrap: break-word;
         margin: 0;
+        display: inline-block;
+        text-align: center;
     }
     .task_body{
         display: flex;
@@ -116,10 +124,7 @@
         justify-content: space-around;
         word-wrap: break-word;
         width: 100%;
-    }
-    .task_body p{
-        word-wrap: break-word;
-        width: 30%;
+        height: 100%;
     }
     .chakra-button.task_delete{
         width: 45%;
@@ -142,5 +147,13 @@
     .buttons_head{
         width: 80%;
     }
+    .task_text_around{
+        width: 45%;
+        overflow-wrap: break-word;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
   }
   

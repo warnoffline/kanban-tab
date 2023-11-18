@@ -19,7 +19,9 @@ const Task = function ({task, index}) {
           >
             <Card className={taskClass}>
               <CardBody className='task_body'>
-                <Text className='task_text'>{task.task}</Text>
+                <div className='task_text_around'>
+                  <Text className='task_text'>{task.task}</Text>
+                </div>
                 <Button className='task_delete' onClick={() => dispatch(removeTask(task.id))} colorScheme='red'>Delete</Button>
               </CardBody>
             </Card>
