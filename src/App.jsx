@@ -1,17 +1,23 @@
 import React from 'react';
 import Form from './components/Form';
 import ColumnTask from './components/ColumnTask';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { TouchBackend } from 'react-dnd-touch-backend';
+import { DragDropContext } from 'react-beautiful-dnd';
 import './App.css'
+import { moveTask } from './store';
+import { useDispatch } from 'react-redux';
 
 const App = function () {
-    console.log(window.TouchEvent)
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-    console.log(isTouchDevice)
+    const dispatch = useDispatch()
+    const handleDragEnd = (result) => {
+        console.log(result)
+        const { draggableId, destination, source } = result;
+        if (!destination) {
+            return;
+        }
+        dispatch(moveTask(draggableId, destination.droppableId, destination.index, source.index, source.droppableId));
+    };
     return (  
-        <DndProvider backend={isTouchDevice? TouchBackend : HTML5Backend}>
+        <DragDropContext onDragEnd={handleDragEnd}>
             <div className='list'>
                 <Form/>
                 <div className='columns'>
@@ -20,7 +26,7 @@ const App = function () {
                     <ColumnTask title="Done" />
                 </div>
             </div>
-        </DndProvider>
+        </DragDropContext>
     );
 }
 

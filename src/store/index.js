@@ -1,3 +1,4 @@
+
 import { createStore } from 'redux'
 
 const initialState = {
@@ -12,14 +13,15 @@ const addTask = (id, task, column) => ({
     type: ADD_TASK,
     payload: { id, task, column }
 });
-const moveTask = (id, column) => ({
+const moveTask = (id, column, idNew, idOld, oldColumn) => ({
     type: MOVE_TASK,
-    payload: { id, column }
+    payload: { id, column, idNew, idOld, oldColumn }
 });
 const removeTask = (id) => ({
     type: REMOVE_TASK,
     payload: id
 });
+
 const reducer = (state = initialState, action) => {
     switch(action.type){
         case ADD_TASK:
@@ -28,11 +30,16 @@ const reducer = (state = initialState, action) => {
                 tasks: [...state.tasks, action.payload]
             }
         case MOVE_TASK:
+            const reorderedTasks = [...state.tasks]
+            const destinationIndex = action.payload.idNew
+            const sourseIndex = action.payload.idOld
+
+            const [removedTask] = reorderedTasks.splice(sourseIndex, 1)
+            reorderedTasks.splice(destinationIndex, 0, removedTask)
+            const newTasks = reorderedTasks.map((task) => task.id === action.payload.id ? {...task, column: action.payload.column || task.column} : task)
             return {
                 ...state,
-                tasks: state.tasks.map(task => 
-                task.id === action.payload.id ? { ...task, column: action.payload.column } : task
-                )
+                tasks: newTasks
             }
         case REMOVE_TASK:
             return{

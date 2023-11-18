@@ -4,27 +4,25 @@ import { useDispatch } from 'react-redux';
 import { addTask } from '../store';
 import './index.css'
 import { useDisclosure, Button,  Modal, ModalOverlay, ModalContent , ModalHeader , ModalCloseButton, ModalBody, FormControl, FormLabel, Input,ModalFooter} from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
 
 const Form = function () {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [taskText, setTaskText] = useState('');
     const dispatch = useDispatch();
-    const generateUniqueId = () => {
-        const timestamp = new Date().getTime();
-        const random = Math.floor(Math.random() * 1000000);
-        return `${timestamp}-${random}`;
-      };
+    const tasks = useSelector(state => state.tasks)
+    
     const handleAddTask = () => {
         if (taskText.trim() !== '') {
-            dispatch(addTask(generateUniqueId(), taskText, "To-do"))
-            setTaskText('')
-            onClose()
+          const taskId = `${tasks.length + 1}`;
+          dispatch(addTask(taskId, taskText, "To-do"))
+          setTaskText('')
+          onClose()
         }
     };
     return (  
         <>
          <Button colorScheme="blue" onClick={onOpen}>Add Task</Button>
-   
          <Modal
            isOpen={isOpen}
            onClose={onClose}
