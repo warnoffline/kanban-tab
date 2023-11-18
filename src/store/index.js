@@ -8,7 +8,7 @@ const initialState = {
 const MOVE_TASK = "MOVE_TASK";
 const ADD_TASK = "ADD_TASK"
 const REMOVE_TASK = "REMOVE_TASK"
-
+    
 const addTask = (id, task, column) => ({
     type: ADD_TASK,
     payload: { id, task, column }
