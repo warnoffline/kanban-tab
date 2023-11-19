@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Form from './components/Form';
 import ColumnTask from './components/ColumnTask';
 import { DragDropContext } from 'react-beautiful-dnd';
-import './App.css'
 import { moveTask } from './store';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import {Button} from '@chakra-ui/react';
+import './App.css'
 
 const App = function () {
     const {t, i18n} = useTranslation()

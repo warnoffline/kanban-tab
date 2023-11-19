@@ -1,11 +1,11 @@
 import React from 'react';
-import './index.css'
 import { Card, CardBody, Text, Button } from '@chakra-ui/react';
 import { removeTask } from '../store';
 import { useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import Change from './Change';
 import bin from './img/free-icon-bin-839571.png'
+import './index.css'
 
 const Task = function ({task, index}) {
   const dispatch = useDispatch()

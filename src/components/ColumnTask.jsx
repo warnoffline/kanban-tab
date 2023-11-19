@@ -1,10 +1,10 @@
 import React from 'react';
 import Task from './Task';
 import { useSelector } from 'react-redux';
-import './index.css'
 import { Card, CardBody, CardHeader, Heading, Divider } from '@chakra-ui/react';
 import { Droppable } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
+import './index.css'
 
 const ColumnTask = function ({title}) {
   const {t} = useTranslation()

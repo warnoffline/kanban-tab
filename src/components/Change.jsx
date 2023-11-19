@@ -1,11 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import './index.css'
 import { useDisclosure, Button,  Modal, ModalOverlay, ModalContent , ModalHeader , ModalCloseButton, ModalBody, FormControl, FormLabel, Input,ModalFooter} from '@chakra-ui/react';
 import { changeTask } from '../store';
 import write from './img/free-icon-write-4223780.png'
 import { useTranslation } from 'react-i18next';
+import './index.css'
 
 const Change = function ({index}) {
     const {t} = useTranslation()
