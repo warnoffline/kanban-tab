@@ -4,6 +4,8 @@ import { Card, CardBody, Text, Button } from '@chakra-ui/react';
 import { removeTask } from '../store';
 import { useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
+import Change from './Change';
+import bin from './img/free-icon-bin-839571.png'
 
 const Task = function ({task, index}) {
   const dispatch = useDispatch()
@@ -22,7 +24,12 @@ const Task = function ({task, index}) {
                 <div className='task_text_around'>
                   <Text className='task_text'>{task.task}</Text>
                 </div>
-                <Button className='task_delete' onClick={() => dispatch(removeTask(task.id))} colorScheme='red'>Delete</Button>
+                <div className='task_buttons'>
+                  <Change index={task.id} />
+                  <div className='task_delete'>
+                    <Button className='but_img' onClick={() => dispatch(removeTask(task.id))} colorScheme='red'><img src={bin} alt="Delete" /></Button>
+                  </div>
+                </div>
               </CardBody>
             </Card>
           </div>

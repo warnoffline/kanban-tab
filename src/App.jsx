@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from './components/Form';
 import ColumnTask from './components/ColumnTask';
 import { DragDropContext } from 'react-beautiful-dnd';
 import './App.css'
 import { moveTask } from './store';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import {Button} from '@chakra-ui/react';
 
 const App = function () {
+    const {t, i18n} = useTranslation()
     const dispatch = useDispatch()
+
+    const changeLanguageHandler = (newLanguage) => {
+        i18n.changeLanguage(newLanguage);
+        localStorage.setItem("lng", newLanguage)
+    };
     const handleDragEnd = (result) => {
-        console.log(result)
         const { draggableId, destination, source } = result;
         if (!destination) {
             return;
@@ -20,6 +27,10 @@ const App = function () {
         <DragDropContext onDragEnd={handleDragEnd}>
             <div className='list'>
                 <Form/>
+                <div className='lang'>
+                    <Button onClick={() => changeLanguageHandler('en')}>en</Button>
+                    <Button onClick={() => changeLanguageHandler('ru')}>ru</Button>
+                </div>         
                 <div className='columns'>
                     <ColumnTask title="To-do" />
                     <ColumnTask title="In Progress" />

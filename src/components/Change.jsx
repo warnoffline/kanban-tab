@@ -1,35 +1,28 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTask } from '../store';
 import './index.css'
 import { useDisclosure, Button,  Modal, ModalOverlay, ModalContent , ModalHeader , ModalCloseButton, ModalBody, FormControl, FormLabel, Input,ModalFooter} from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
-import {useColorMode} from '@chakra-ui/color-mode'
+import { changeTask } from '../store';
+import write from './img/free-icon-write-4223780.png'
 import { useTranslation } from 'react-i18next';
- 
-const Form = function () {
+
+const Change = function ({index}) {
+    const {t} = useTranslation()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [taskText, setTaskText] = useState('');
-    const {t} = useTranslation()
     const dispatch = useDispatch();
-    const tasks = useSelector(state => state.tasks)
-    const { colorMode, toggleColorMode } = useColorMode()
-    const handleAddTask = () => {
+    const handleChangeTask = () =>{
         if (taskText.trim() !== '') {
-          const taskId = `${tasks.length + 1}`;
-          dispatch(addTask(taskId, taskText, "To-do"))
-          setTaskText('')
-          onClose()
-        }
-    };
+            dispatch(changeTask(index, taskText))
+            setTaskText('')
+            onClose()
+          }
+    }
     return (  
         <>
-        <div className='buttons_head'>
-          <Button className='toggle_button' onClick={toggleColorMode}>
-          {colorMode === 'light' ? t('Dark Theme') : t('Light Theme')}
-          </Button>
-          <Button className="modal_button" colorScheme="blue" onClick={onOpen}>{t("Add Task")}</Button>
+        <div className='change_button'>
+            <Button className='but_img' colorScheme='yellow' onClick={onOpen}><img src={write} alt="Change" /></Button>
         </div>
          <Modal
            isOpen={isOpen}
@@ -37,7 +30,7 @@ const Form = function () {
          >
            <ModalOverlay />
            <ModalContent>
-             <ModalHeader>{t("Add your task")}</ModalHeader>
+             <ModalHeader>{t("Change your task")}</ModalHeader>
              <ModalCloseButton />
              <ModalBody pb={6}>
                <FormControl>
@@ -46,8 +39,8 @@ const Form = function () {
                </FormControl>
              </ModalBody>
              <ModalFooter>
-               <Button onClick={handleAddTask} colorScheme='blue' mr={3}>
-                 {t("Save")}
+               <Button onClick={handleChangeTask} colorScheme='blue' mr={3}>
+                {t("Save")}
                </Button>
                <Button onClick={onClose}>{t("Cancel")}</Button>
              </ModalFooter>
@@ -57,4 +50,4 @@ const Form = function () {
     );
 }
 
-export default Form;
+export default Change;

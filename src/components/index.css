@@ -54,11 +54,7 @@
     margin-bottom: 10px;
     text-align: center;
 }
-.task_delete{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-}
+
 .task_move{
     width: 100%;
 }
@@ -80,6 +76,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.task_buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.task_delete{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.but_img img{
+    width: 40%;
 }
 
 @media screen and (max-width: 1400px) and (min-width: 850px) {
@@ -108,17 +121,17 @@
         width: 60%;
     }
   }
-  @media screen and (max-width: 499px){
+  @media screen and (max-width: 499px) and (min-width: 320px){
     .column{
       width: 100%;
+      min-height: 25vh;
       margin-top: 10px;
       padding: 0 40px;
     }
     .task_text{
-
         height: 100%;
         width: 100%;
-        font-size: 15px;
+        font-size: 18px;
         word-wrap: break-word;
         margin: 0;
         display: inline-block;
@@ -134,24 +147,18 @@
     }
     .chakra-button.task_delete{
         width: 45%;
-        font-size: 15px;
-    }
-    .container_move{
-        width: 100%;
-        font-size: 15px;
     }
     .chakra-heading.column_title{
-        font-size: 20px;
+        font-size: 30px;
         text-align: center;
     }
     .chakra-card__body.column_body{
         padding: 0;
     }
-    .modal_button{
-        width: 40%;
-    }
+
     .buttons_head{
-        width: 80%;
+        width: 90%;
+        
     }
     .task_text_around{
         width: 45%;
@@ -160,6 +167,84 @@
         align-items: center;
         justify-content: center;
     }
-    
+    .task_buttons{
+        width: 45%;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .but_img img{ 
+        width: 90%;
+    }
+    .change_button{
+        width: 45%;
+        display: flex;
+    }
+    .task_delete{
+        width: 45%;
+        margin: 0;
+    }
+  }
+  @media screen and (max-width: 319px){
+    .column{
+      width: 100%;
+      min-height: 25vh;
+      margin-top: 10px;
+      padding: 0 40px;
+    }
+    .task_text{
+        height: 100%;
+        width: 100%;
+        font-size: 15px;
+        word-wrap: break-word;
+        display: inline-block;
+        text-align: center;
+    }
+    .task_body{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        word-wrap: break-word;
+        width: 100%;
+        height: 100%;
+    }
+    .chakra-button.task_delete{
+        width: 45%;
+    }
+    .chakra-heading.column_title{
+        font-size: 20px;
+        text-align: center;
+    }
+    .chakra-card__body.column_body{
+        padding: 0;
+    }
+    .buttons_head{
+        width: 100%;
+        
+    }
+    .task_text_around{
+        width: 45%;
+        overflow-wrap: break-word;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .task_buttons{
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .but_img img{ 
+        width: 100%;
+    }
+    .change_button{
+        width: 45%;
+        display: flex;
+    }
+    .task_delete{
+        width: 45%;
+        margin: 0;
+    }
   }
   

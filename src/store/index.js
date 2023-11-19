@@ -2,13 +2,15 @@
 import { createStore } from 'redux'
 
 const initialState = {
-    tasks: []
+    tasks: [],
+    language: 'en'
 }
 
 const MOVE_TASK = "MOVE_TASK";
 const ADD_TASK = "ADD_TASK"
 const REMOVE_TASK = "REMOVE_TASK"
-    
+const CHANGE_TASK = "CHANGE_TASK"
+
 const addTask = (id, task, column) => ({
     type: ADD_TASK,
     payload: { id, task, column }
@@ -21,6 +23,10 @@ const removeTask = (id) => ({
     type: REMOVE_TASK,
     payload: id
 });
+const changeTask = (id, newTask) => ({
+    type: CHANGE_TASK,
+    payload: {id, newTask}
+})
 
 const reducer = (state = initialState, action) => {
     switch(action.type){
@@ -45,6 +51,11 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 tasks: state.tasks.filter(task => task.id !== action.payload)
+            }
+        case CHANGE_TASK:
+            return{
+                ...state, 
+                tasks: state.tasks.map(task => task.id === action.payload.id ? {...task, task: action.payload.newTask} : task)
             }
         default:
             return state;
@@ -80,4 +91,4 @@ const store = createStore(reducer, persistedState)
 store.subscribe(() => {
     saveState(store.getState());
 });
-export {store, addTask, moveTask, removeTask };
+export {store, addTask, moveTask, removeTask, changeTask };
